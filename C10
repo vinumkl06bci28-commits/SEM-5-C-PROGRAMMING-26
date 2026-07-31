@@ -1,0 +1,36 @@
+char findTheDifference(char* s, char* t)
+{
+    int s_tab[26] = {0};
+    int t_tab[26] = {0};
+    int     i;
+    char    c;
+
+    i = 0;
+    while(s[i])
+    {
+        s_tab[s[i] - 'a']++;
+        i++;
+    }
+    i = 0;
+    while(t[i])
+    {
+        t_tab[t[i] - 'a']++;
+        i++;
+    }
+    i = 0;
+    while (i < 26)
+    {
+        if (s_tab[i] > t_tab[i])
+        {
+            c = i + 'a';
+            break ;
+        }
+        if (t_tab[i] > s_tab[i])
+        {
+            c = i + 'a';
+            break ;
+        }
+        i++;
+    }
+    return (c);
+}
