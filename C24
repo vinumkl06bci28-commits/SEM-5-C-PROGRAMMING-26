@@ -1,0 +1,34 @@
+bool wordPattern(char* ptrn, char* s) {
+    char** arr=(char**)malloc(sizeof(char*)*26);
+    for(int i=0;i<26;i++){
+        arr[i]=(char*)malloc(sizeof(char)*30);
+        arr[i][0]=-1;
+    }
+    int k=0;
+    char *token=strtok(s, " ");
+    while (token != NULL && k<strlen(ptrn)) {
+        // checking if mapping already done for the character
+        if(arr[ptrn[k]-'a'][0]!=-1){
+            // check if its not the same character as mapped
+            if(strcmp(arr[ptrn[k]-'a'],token)!=0)
+                return false;
+            else{
+                k++;
+                token = strtok(NULL," ");
+                continue;
+            }
+        }
+        // check if the new word is already mapped to a character or not
+        for(int i=0;i<26;i++){
+            if(arr[i][0]!=-1 && strcmp(arr[i],token)==0)
+                return false;
+        }
+        strcpy(arr[ptrn[k]-'a'],token);
+        k++;
+        token = strtok(NULL," ");
+    }
+    // edge case when number of words are less than pattern length or we didn't loop through all words (i.e more words than length of pattern)
+    if(k!=strlen(ptrn) || token!=NULL)
+        return false;
+    return true;
+}
