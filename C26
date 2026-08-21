@@ -1,0 +1,6 @@
+int longestPalindrome(char * s){
+    int m[128] = { 0 }, a = 0, b = 0, c;
+    while (*s && ++m[*s++]);
+    for (int i = 'A' - 1 ; ++i <= 'z' ; m[i] && (a += m[i] - ((b |= c = m[i] & 0x1), c)));
+    return a + b;
+}
