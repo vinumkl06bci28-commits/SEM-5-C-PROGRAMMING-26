@@ -1,0 +1,24 @@
+int* nextGreaterElement(int* nums1, int nums1Size, int* nums2, int nums2Size, int* returnSize) {
+    *returnSize = nums1Size;
+    int *ans= (int*)malloc(nums1Size *(sizeof(int)));
+    for(int i=0;i<nums1Size;i++){
+        for(int j=0;j<nums2Size;j++){
+            int max=nums2[j];
+            if(nums2[j]==nums1[i]){
+                for(int k=j+1;k<nums2Size;k++){
+                    if(nums2[k]>nums2[j]){
+                        max=nums2[k];
+                        break;
+                    }
+                }
+                if(max!=nums2[j]){
+                    ans[i]=max;
+                }
+                else{
+                    ans[i]=-1;
+                }
+            }
+        }
+    }
+    return ans;
+}
