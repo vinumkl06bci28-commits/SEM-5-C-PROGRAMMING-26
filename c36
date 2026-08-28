@@ -1,0 +1,39 @@
+int my_len(char *str)
+{
+    int i;
+
+    i = 0;
+    while (str[i])
+        i++;
+    return (i);        
+}
+
+bool isSubsequence(char* s, char* t)
+{
+    int i;
+    int x;
+    int t_len;
+    int s_len;
+
+    if (!s[0] || (!t[0] && !s[0]))
+        return (true);
+    i = 0;
+    x = 0;
+    t_len = my_len(t);
+    s_len = my_len(s);
+    if (s_len > t_len)
+        return (false);
+    while (t[i])
+    {
+        if (t[i] == s[x])
+        {
+            if (x == s_len)
+                return (false);
+            x++;
+        }
+        i++;
+    }
+    if (x == s_len)
+        return (true);
+    return (false);
+}
