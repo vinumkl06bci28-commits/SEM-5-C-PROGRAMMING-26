@@ -1,0 +1,24 @@
+int* shortestToChar(char* s, char c, int* returnSize) 
+{
+    const int N = strlen(s);
+    int* ans = malloc(N * sizeof(int));
+
+    // initialize with prev closest occurent
+    int prev = SHRT_MIN;
+    for (int i=0; i < N; i++) {
+        if (s[i] == c)
+            prev = i;
+        ans[i] = i-prev;
+    }
+
+    // update with next closest occurence
+    int next = SHRT_MAX;
+    for (int i=N-1; i >= 0; i--) {
+        if (s[i] == c)
+            next = i;
+        ans[i] = fmin(ans[i], next-i);
+    }
+
+    returnSize[0] = N;
+    return ans;
+}
