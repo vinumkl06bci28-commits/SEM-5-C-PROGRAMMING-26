@@ -1,0 +1,11 @@
+int countBinarySubstrings(char* s) {
+    int result=0;
+
+    for(int i=1, cl=0, cr=1; s[i]!='\0'; i++) {
+        if(s[i]==s[i-1]){ cr++; }
+        else{ cl=cr; cr=1; }
+        result+=(cr<=cl);
+    }
+
+    return result;
+}
