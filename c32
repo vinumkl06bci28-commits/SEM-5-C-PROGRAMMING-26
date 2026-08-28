@@ -1,0 +1,19 @@
+int isnum(char s){
+    return (s >= '0' && s <= '9');  //the problem doesn't ignore any numbers
+}
+
+
+bool isPalindrome(char* s) {
+    int len = strlen(s);
+    int start = 0, end = len - 1;
+    while(start<end){
+        if(!isalpha(s[start]) && !isnum(s[start])) start++;
+        else if(!isalpha(s[end]) && !isnum(s[end])) end--;
+        else if(tolower(s[start]) != tolower(s[end])) return false;
+        else{
+            start++;
+            end--;
+        }
+    }
+    return true;
+}
