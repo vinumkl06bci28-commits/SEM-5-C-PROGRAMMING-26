@@ -1,0 +1,40 @@
+char* reverseVowels(char* s) {
+    int     i;
+    int     c;
+    char    *str;
+
+    c = 0;
+    i = 0;
+    while (s[i])
+    {
+        if (s[i] == 'a' || s[i] == 'e' || s[i] == 'i' || s[i] == 'o' || s[i] == 'u' || s[i] == 'A' || s[i] == 'E' || s[i] == 'I' || s[i] == 'O' || s[i] == 'U')
+            c++;
+        i++;
+    }
+    str = malloc(c);
+    if (!str)
+        return (NULL);
+    c = 0;
+    i = 0;
+    while (s[i])
+    {
+        if (s[i] == 'a' || s[i] == 'e' || s[i] == 'i' || s[i] == 'o' || s[i] == 'u' || s[i] == 'A' || s[i] == 'E' || s[i] == 'I' || s[i] == 'O' || s[i] == 'U')
+        {
+            str[c] = s[i];
+            c++;
+        }
+        i++;
+    }
+    i = 0;
+    while (s[i])
+    {
+        if (s[i] == 'a' || s[i] == 'e' || s[i] == 'i' || s[i] == 'o' || s[i] == 'u' || s[i] == 'A' || s[i] == 'E' || s[i] == 'I' || s[i] == 'O' || s[i] == 'U')
+        {
+            c--;
+            s[i] = str[c];
+        }
+        i++;
+    }
+    free(str);
+    return (s);
+}
