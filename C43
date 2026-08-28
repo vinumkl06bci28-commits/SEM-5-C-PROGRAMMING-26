@@ -1,0 +1,38 @@
+bool backspaceCompare(char* s, char* t) {
+
+    //made string(s1) from 's'
+    char s1[strlen(s)+1];
+    int p=0;
+    for (int i=0;i<strlen(s);i+=1){
+        if (s[i]!='#'){
+            s1[p]=s[i];
+            p+=1;
+        }
+        else if (s[i]=='#' && p>0){
+            p-=1;
+        }
+    }
+    s1[p]='\0';
+
+    //made string(t1) from 't' 
+    char t1[strlen(t)+1];
+    p=0;
+    for (int i=0;i<strlen(t);i+=1){
+        if (t[i]!='#'){
+            t1[p]=t[i];
+            p+=1;
+        }
+        else if (t[i]=='#' && p>0){
+            p-=1;
+        }
+    }
+    t1[p]='\0';
+
+    //compare the two strings (s1,t1)
+    if (strcmp(s1,t1)==0){
+        return true;
+    }
+    else{
+        return false;
+    }
+}
