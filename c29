@@ -1,0 +1,5 @@
+int removeDuplicates(int* nums, int numsSize) {    
+    int *n = nums, *p = n, sz = numsSize;
+    for (; sz-- ; (p == nums || *n != p[-1]) && (*p++ = *n), n++);
+    return p - nums;
+}
