@@ -1,0 +1,21 @@
+char* reverseOnlyLetters(char* s) {
+    int i = 0;
+    int j = strlen(s)-1;
+    while(i<j){
+        if((s[i]>=0 && s[i]<65) || (s[i]>=91 && s[i]<=96) || (s[i]>=123 && s[i]!=127)){
+            i++;
+        }
+        else
+        if((s[j]>=0 && s[j]<65) || (s[j]>=91 && s[j]<=96) || (s[j]>=123 && s[j]!=127)){
+            j--;
+        }
+        else{
+            char temp = s[i];
+            s[i] = s[j];
+            s[j] = temp;
+            i++;
+            j--;
+        }
+    }
+    return s;
+}
