@@ -1,0 +1,42 @@
+char* longestNiceSubstring(char* s) 
+{
+    int len_s = strlen(s), max_len = 0, w1 = 0, w2 = 0;
+    for(int i = 0; i < len_s; i++)
+    {
+        int uppercase[26] = {false}, lowercase[26] = {false};
+        for(int j = i; j < len_s; j++)
+        {
+            if('A' <= s[j] && s[j] <= 'Z')
+            {
+                uppercase[s[j] - 'A'] = true;
+            }
+            else  // 'a' <= s[j] && s[j] <= 'z'
+            {
+                lowercase[s[j] - 'a'] = true;
+            }
+            if(max_len >= j - i + 1)
+            {
+                continue;
+            }
+            int k = 0;
+            while(k < 26 && uppercase[k] == lowercase[k])
+            {
+                k++;
+            }
+            if(k == 26)
+            {
+                w1 = i;
+                w2 = j;
+                max_len = j - i + 1;
+            }
+        }
+    }
+    char *longest_nice_str = malloc((max_len + 1) * sizeof(char));
+    if(longest_nice_str == NULL)
+    {
+        return NULL;
+    }
+    longest_nice_str[max_len] = '\0';
+    strncpy(longest_nice_str, s + w1, max_len);
+    return longest_nice_str;
+}
