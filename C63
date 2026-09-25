@@ -1,0 +1,15 @@
+#define CHAR_SET    26
+
+int maximumLengthSubstring(char* s) {
+    int maxLen = 0, freq[CHAR_SET] = {0};
+
+    for(int left = 0, right = 0; s[right]; right++) {
+        ++freq[s[right] - 'a'];
+        
+        while(freq[s[right] - 'a'] > 2) {
+            --freq[s[left++] - 'a'];
+        }
+        maxLen = fmax(maxLen, right - left + 1);
+    }
+    return maxLen;
+}
