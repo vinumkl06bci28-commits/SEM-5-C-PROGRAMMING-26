@@ -1,0 +1,25 @@
+
+int* sortedSquares(int* a, int n, int* rn) {
+    int *r = (int *)malloc(n * sizeof(int));
+    *rn = n;
+    int last_neg = -1, i, j = 0;
+    while ((last_neg + 1 < n) && (a[last_neg + 1] < 0)) last_neg++;
+    if (last_neg == -1) {
+        for (i = 0; i < n; i++) r[i] = a[i] * a[i];
+        return r;
+    }
+    i = last_neg + 1;
+    while ((i < n) || (last_neg > -1)) {
+        int pos = (i < n) ? a[i] * a[i] : INT_MAX;
+        int neg = (last_neg > -1) ? a[last_neg] * a[last_neg] : INT_MAX;
+        if (pos < neg) {
+            r[j] = pos;
+            i++;
+        } else {
+            r[j] = neg;
+            last_neg--;
+        }
+        j++;
+    }
+    return r;
+}
