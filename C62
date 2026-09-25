@@ -1,0 +1,15 @@
+int min(int a, int b)  { 
+    return (a < b ? a : b); 
+}
+int maximumStrongPairXor(int* nums, int numsSize) {
+    int i,j,maxResult=0,result;
+    for(i=0;i<numsSize-1;i++){
+        for(j=i+1;j<numsSize;j++){
+            if(abs(nums[i]-nums[j]) <= min(nums[i],nums[j])){
+                result=nums[i]^nums[j];
+                maxResult= result > maxResult ? result : maxResult; 
+            }
+        }
+    }
+    return maxResult;
+}
