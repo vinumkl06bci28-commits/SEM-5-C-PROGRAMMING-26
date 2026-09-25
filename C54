@@ -1,0 +1,18 @@
+#define MAX(a,b) ( (a) > (b) ? (a) : (b) )
+
+double findMaxAverage(int* nums, int N, int k) {
+    double cur_avg = 0;
+    double w_size = (double) k;
+
+    for ( int i=0; i < k; i++ ) 
+        cur_avg += nums[i] / w_size;
+    
+    double max_avg = cur_avg;
+
+    for ( int i=k; i < N; i++ ) {
+        cur_avg += (nums[i]/w_size) - (nums[i-k]/w_size);
+        max_avg = MAX( max_avg, cur_avg ); 
+    }
+
+    return max_avg;
+}
