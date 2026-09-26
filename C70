@@ -1,0 +1,46 @@
+int count(struct ListNode* head)
+{
+    int count;
+
+    count = 0;
+    while (head)
+    {
+        head = head->next;
+        count++;
+    }
+    return (count);
+}
+
+bool isPalindrome(struct ListNode* head)
+{
+    struct  ListNode* node;
+    int     i;
+    int     max;
+    int     *total;
+    int     stop;
+
+    if (!head)
+        return (NULL);
+    node = head;
+    i = 0;
+    max = (count(head) - 1);
+    stop = (max + 1) / 2;
+    total = malloc((max + 1) * sizeof(int));
+    if (!total)
+        return (false);
+    while (node)
+    {
+        total[i] = node->val;
+        node = node->next;
+        i++;
+    }
+    i = 0;
+    while (stop > i)
+    {
+        if (total[i] != total[max])
+            return (false);
+        i++;
+        max--;
+    }
+    return (true);
+}
