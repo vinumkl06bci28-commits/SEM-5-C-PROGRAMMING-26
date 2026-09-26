@@ -1,0 +1,35 @@
+ int countNodes(struct TreeNode* root)
+ {
+    if (!root)
+        return (0);
+    return (countNodes(root->left) + countNodes(root->right) + 1);
+ }
+
+int *preorderDigits(struct TreeNode* node, int* total, int *i)
+{
+    if (!node)
+        return (NULL);
+    total[*i] = node->val;
+    *i += 1;
+    preorderDigits(node->left, total, i);
+    preorderDigits(node->right, total, i);
+    return (total);
+}
+
+int *preorderTraversal(struct TreeNode* root, int* returnSize)
+{
+    int *total;
+    int i;
+
+    if (!root)
+    {
+        *returnSize = 0; // Leetcode needs a returnSize otherwise -> Error
+        return (NULL);
+    }
+    i = 0;
+    *returnSize = countNodes(root);
+    total = malloc(*returnSize * sizeof(int));
+    if (!total)
+        return (NULL);
+    return (preorderDigits(root, total, &i));
+}
